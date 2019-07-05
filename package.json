@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "dev": "goldpage dev & nodemon ./server --ignore data.json --ignore pages/",
+    "prod": "npm run build && npm run start",
+    "build": "goldpage build",
+    "start": "export NODE_ENV='production' && node ./server"
+  },
+  "dependencies": {
+    "@brillout/proto-db": "^0.1.0",
+    "@goldpage/express": "^0.5.5",
+    "@goldpage/react": "^0.5.5",
+    "@wildcard-api/client": "^0.2.10",
+    "@wildcard-api/server": "^0.2.10",
+    "express": "^4.17.1",
+    "fs-extra": "^7.0.1",
+    "goldpage": "^0.5.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
