@@ -1,28 +1,27 @@
-const express = require('express');
 const {getApiResponse} = require('wildcard-api');
 
 require('../api');
 
-const server = express();
-module.exports = server;
+module.exports = {
+  name: 'wildcard-hapi-plugin',
+  register: async server => {
+    server.route({
+      method: '*',
+      path: '/wildcard/{param*}',
+      handler: async (request, h) => {
+        const requestProps = {
+          body: request.payload,
+          url: request.url,
+          method: request.method,
+        };
 
-server.use(express.json());
+        const responseProps = await getApiResponse(requestProps);
 
-server.all('/wildcard/*' , async (req, res) => {
-  // `getApiResponse` requires the HTTP request `url`, `method`, and `body`.
-  const requestProps = {
-    url: req.url,
-    method: req.method,
-    body: req.body,
-  };
-
-  // The `requestProps` object is available in your endpoint functions as `this`.
-  // For example, you can add `req.headers` to `requestProps` to be
-  // able to access the HTTP headers in your endpoint functions at `this.headers`.
-  requestProps.headers = req.headers;
-
-  const responseProps = await getApiResponse(requestProps);
-  res.status(responseProps.statusCode);
-  res.type(responseProps.contentType);
-  res.send(responseProps.body);
-});
+        const resp = h.response(responseProps.body);
+        resp.code(responseProps.statusCode);
+        resp.type(responseProps.contentType);
+        return resp;
+      }
+    });
+  },
+};

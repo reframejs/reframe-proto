@@ -5,7 +5,7 @@ This starter scaffolds an app with:
    - Interactive views (with [React](https://github.com/facebook/react))
    - Page Builder (with [Goldpage](https://github.com/reframejs/goldpage))
  - Backend
-   - Node.js Server (with [Express](https://github.com/expressjs/express))
+   - Node.js Server (with [Hapi](https://github.com/hapijs/hapi))
    - Database (with [ProtoDB](https://github.com/brillout/proto-db))
    - API (with [Wildcard API](https://github.com/reframejs/wildcard-api))
 

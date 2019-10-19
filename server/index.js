@@ -1,16 +1,17 @@
-const express = require('express');
+const Hapi = require('@hapi/hapi');
 const goldpage = require('./goldpage');
 const wildcard = require('./wildcard');
 
-const server = express();
+startServer();
 
-server.use(wildcard);
-server.use(goldpage);
-
-start(server);
-
-function start() {
+async function startServer() {
   const port = process.env.PORT || 3000;
-  server.listen(port);
-  console.log('Server is running at http://localhost:'+port);
+  const server = Hapi.Server({port, debug: {request: ['internal']}});
+
+  await server.register(wildcard);
+  await server.register(goldpage);
+
+  await server.start();
+
+  console.log('Server running at http://localhost:'+port);
 }

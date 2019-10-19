@@ -7,9 +7,9 @@
   },
   "dependencies": {
     "@brillout/proto-db": "^0.1.0",
-    "@goldpage/express": "^0.5.5",
+    "@goldpage/hapi": "^0.5.5",
     "@goldpage/react": "^0.5.5",
-    "express": "^4.17.1",
+    "@hapi/hapi": "^18.4.0",
     "fs-extra": "^7.0.1",
     "goldpage": "^0.5.5",
     "react": "^16.8.6",
